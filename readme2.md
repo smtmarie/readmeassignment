@@ -38,7 +38,9 @@ This project is licensed under MIT's license.
 
 ## Contributing
 
+Self and Team of Instructors
 
+## Tests
 
 The user will be prompted for their GitHub username and other information pertaining to the project the README is for.
 
