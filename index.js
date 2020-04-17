@@ -48,25 +48,48 @@ const questions = [
 
 ]
 
-async function init() {
+function writeToFile(fileName, data) {
 
-    console.log("Hey there!")
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data)
 
-    try {
-
-        const answers = await promptUser();
-
-        const html = generateHTML(answers);
-
-        await writeFileAsync("index.html", html);
-
-        console.log("Successfully written to index.html");
-
-    } catch (err) {
-
-        console.log("Error");
-    }
 }
+
+function init() {
+
+    inquirer.prompt(questions).then(inquireResponses => {
+
+        writeToFile("readme2.md", generateMarkdown({ ...inquireResponses }))
+    })
+}
+
+
+init();
+
+
+
+
+
+
+
+// async function init() {
+
+//     console.log("Hey there!")
+
+//     try {
+
+//         const answers = await promptUser();
+
+//         const html = generateHTML(answers);
+
+//         await writeFileAsync("index.html", html);
+
+//         console.log("Successfully written to index.html");
+
+//     } catch (err) {
+
+//         console.log("Error");
+//     }
+// }
 
 
 
