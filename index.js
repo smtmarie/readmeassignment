@@ -19,15 +19,15 @@ const questions = [
 
     {
         type: "input",
-        name: "hobby",
-        message: "What is your favorite hobby?",
+        name: "profession",
+        message: "What is your profession?",
 
     },
 
     {
         type: "input",
-        name: "food",
-        message: "What is your favorite food?",
+        name: "hobby",
+        message: "What is your favorite hobby?",
 
     },
 
@@ -71,40 +71,9 @@ init();
 
 
 
-// async function init() {
-
-//     console.log("Hey there!")
-
-//     try {
-
-//         const answers = await promptUser();
-
-//         const html = generateHTML(answers);
-
-//         await writeFileAsync("index.html", html);
-
-//         console.log("Successfully written to index.html");
-
-//     } catch (err) {
-
-//         console.log("Error");
-//     }
-// }
 
 
 
 
 
 
-// const questions = [
-
-// ];
-
-// function writeToFile(fileName, data) {
-// }
-
-// function init() {
-
-// }
-
-// init();
