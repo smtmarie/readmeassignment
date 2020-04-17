@@ -1,12 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const util = require("util");
+const generateMarkdown = require("./generateMarkdown");
+const path = require("path");
 
-const writeFileAsync = util.promisify(fs.writeFile);
+const questions = [
 
-function promptUser() {
-
-    return inquirer.prompt([
 
         {
             type: "input",
