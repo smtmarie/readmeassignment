@@ -20,12 +20,25 @@ This project dynamically generates a README.md from a user's input.
 
 *[Questions](#questions)
 
+#Installation
+
 
 The application will be invoked with the following command:
 
-```sh
-node index.js
+```npm i
 ```
+
+## Usage
+
+This project is useful.
+
+## License
+
+This project is licensed under MIT's license.
+
+## Contributing
+
+
 
 The user will be prompted for their GitHub username and other information pertaining to the project the README is for.
 
