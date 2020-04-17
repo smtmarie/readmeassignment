@@ -1,4 +1,15 @@
+#Assignment
+
+[![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](https://github.com/smtmarie/readmeassignment)
+
+## Description
+
 This project dynamically generates a README.md from a user's input. 
+
+## Table of Contents
+
+
+
 
 The application will be invoked with the following command:
 
