@@ -2,12 +2,11 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 const api = require("./utilities/api");
-const generateMarkdown = require("./utilities/generateMarkdown");
+const generateMarkdown = require("./generateMarkdown");
 
-const writeFileAsync = util.promisify(fs.writeFile)
+const writeFileAsync = util.promisify(fs.writeFile);
 
 const questions = [
-
 
     {
         type: "input",
@@ -23,13 +22,6 @@ const questions = [
 
     {
         type: "input",
-        name: "contribution",
-        message: "Who has contributed to this project?",
-
-    },
-
-    {
-        type: "input",
         name: "description",
         message: "Please give a brief description of your project.",
 
@@ -39,40 +31,57 @@ const questions = [
         type: "list",
         name: "license",
         message: "What license would you like to utilize?",
-        choices: ["MIT", "BSD", "Apache", "GNU", "None"]
+        choices: ["MIT", "BSD", "Apache", "GPL", "None"]
 
     },
-    
+
     {
         type: "input",
         name: "install",
-        message: "What command will you need to install?",
+        message: "What command will you need to install dependencies?",
+        default: "npm i"
 
     },
 
     {
+
         type: "input",
-        name: "testing",
-        message: "How would you like to run a test?",
+        name: "usage",
+        message: "What does user need to know to utilize the application?",
 
     },
 
+    {
 
+        type: "input",
+        name: "contributing",
+        message: "What does user need to know to contribute to the repo?",
+    },
+
+    {
+
+        type: "input",
+        name: "tests",
+        message: "What command should be utilized to run tests?",
+        default: "npm test"
+    },
+
+    
 ];
 
-   
+
 
 function init() {
 
-    inquirer.prompt(questions).then(answers=> {
+    inquirer.prompt(questions).then(answers => {
 
         console.log(answers)
         api.getUser(answers.username)
-        .then(({data}) => {
+            .then(({ data }) => {
 
-            writeFileAsync("README.md", generateMarkdown({...answers, ...data}))
+                writeFileAsync("README.md", generateMarkdown({ ...answers, ...data }))
 
-        })
+            })
     });
 };
 
