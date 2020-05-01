@@ -1,8 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
+const api = require("./utilities/api");
+const generateMarkdown = require("./utilities/generateMarkdown");
 
-const createReadAsync = util.promisify(fs.writeFile)
+const writeFileAsync = util.promisify(fs.writeFile)
 
 function questions() {
 
@@ -10,44 +12,54 @@ function questions() {
 
         {
             type: "input",
-            name: "name",
-            message: "What is your name?",
+            name: "username",
+            message: "What is your GitHub username?",
         },
     
         {
             type: "input",
-            name: "location",
-            message: "Where are you from?",
+            name: "title",
+            message: "What is the title of your project?",
         },
-    
+
         {
             type: "input",
-            name: "profession",
-            message: "What is your profession?",
-    
-        },
-    
-        {
-            type: "input",
-            name: "hobby",
-            message: "What is your favorite hobby?",
+            name: "contribution",
+            message: "Who has contributed to this project?",
     
         },
     
         {
             type: "input",
-            name: "github",
-            message: "Enter your Github username",
+            name: "description",
+            message: "Please give a brief description of your project.",
+    
+        },
+    
+        {
+            type: "list",
+            name: "license",
+            message: "What license would you like to utilize?",
+            choices: ["MIT", "BSD", "Apache", "GNU", "None"]
+    
+        },
+        
+        {
+            type: "input",
+            name: "install",
+            message: "What command will you need to install?",
     
         },
     
         {
             type: "input",
-            name: "linkedin",
-            message: "Enter your LinkedIn URL",
+            name: "testing",
+            message: "How would you like to run a test?",
     
         },
-    
+
+       
+
     ])
 
    
@@ -65,6 +77,20 @@ function init() {
     inquirer.prompt(questions).then(inquireResponses => {
 
         writeToFile("readme2.md", generateMarkdown({ ...inquireResponses }))
+    })
+};
+
+function init() {
+
+    inquirer.prompt(questions).then(answers=> {
+
+        console.log(answers)
+        api.getUser(answers.username)
+        .then(({data}) => {
+
+            writeFileAsync("README.md", generateMarkdown({...answers, ...data}))
+
+        })
     })
 }
 
