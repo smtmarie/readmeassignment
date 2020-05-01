@@ -10,71 +10,47 @@ function renderLicenseBadge(license, github, title) {
   return ''
 }
 
-function renderLicenseSection(license) {
-  if (license !== "None") {
-    return (
-      `## License
-
-This project is licensed under the ${license} license.`
-    )
-  }
-  return ''
-}
-
 function generateMarkdown(data) {
-  return `
-# ${data.title}
-${renderLicenseBadge(data.license, data.github, data.title)}
-
-## Description
-
-${data.description}
-
-## Table of Contents 
-
-* [Installation](#installation)
-
-* [Usage](#usage)
-
-* [License](#license)
-
-* [Contributing](#contributing)
-
-* [Tests](#tests)
-
-* [Questions](#questions)
-
-## Installation
-
-To install necessary dependencies, run the following command:
-
-\`\`\`
-${data.installation}
-\`\`\`
-
-## Usage
-
-${data.usage}
-
-${renderLicenseSection(data.license)}
   
-## Contributing
+    return `    
+    
+    # ${data.title}
 
-${data.contributing}
+    ${renderLicenseBadge(data.license, data.username, data.title)}
 
-## Tests
+    Description
 
-To run tests, run the following command:
+    ${data.description}
 
-\`\`\`
-${data.test}
-\`\`\`
+    ## Table of Contents
 
-## Questions
+    * Installation
+    * Usage
+    * License
+    * Contribution
+    * Tests
+    * Questions
+    
+    To install all necessary dependencies run the following command: ${data.installation}
 
-If you have any questions about the repo, open an issue or contact [${data.github}](${data.url}) directly at ${data.email}.
+    Usage:
+    ${data.usage}
 
-`;
+    Contribution:
+    ${data.contribution}
+
+    To run tests, utilize the following command:
+    ${data.tests}
+
+    License:
+
+    ${data.license}
+
+    <img src= "${data.avatar_url}"></img>
+
+    Creator Github account: [Github](${data.url})`;
+
 }
 
 module.exports = generateMarkdown;
+
