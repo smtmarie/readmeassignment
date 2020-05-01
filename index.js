@@ -13,7 +13,7 @@ function questions() {
         {
             type: "input",
             name: "username",
-            message: "What is your GitHub username?",
+            message: "What is your Github username?",
         },
     
         {
