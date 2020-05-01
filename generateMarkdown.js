@@ -3,7 +3,7 @@ function generateProjectUrl(github, title) {
   return `https://github.com/${github}/${kebabCaseTitle}`;
 }
 
-function renderLicenseBadge(license, github, title) {
+function renderLicenseBadge(license, username, title) {
   if (license !== "None") {
     return `[![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](${generateProjectUrl(github, title)})`
   }
@@ -12,9 +12,9 @@ function renderLicenseBadge(license, github, title) {
 
 function generateMarkdown(data) {
   
-    return `    
+    return    
     
-    # ${data.title}
+    `# ${data.title}
 
     ${renderLicenseBadge(data.license, data.username, data.title)}
 
@@ -27,7 +27,7 @@ function generateMarkdown(data) {
     * Installation
     * Usage
     * License
-    * Contribution
+    * Contributing
     * Tests
     * Questions
     
@@ -37,7 +37,7 @@ function generateMarkdown(data) {
     ${data.usage}
 
     Contribution:
-    ${data.contribution}
+    ${data.contributing}
 
     To run tests, utilize the following command:
     ${data.tests}

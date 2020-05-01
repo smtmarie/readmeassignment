@@ -1,23 +1,23 @@
-const axios = require("axios");
+// const axios = require("axios");
 
-require('dotenv').config();
+// require('dotenv').config();
 
-const api = {
+// const api = {
 
-    getUser(username) {
+//     getUser(username) {
 
-        return axios.get(
+//         return axios.get(
 
-            `http://api.github.com/users/${username}?client_id=${
+//             `https://api.github.com/users/${username}?client_id=${
 
-            process.env.CLIENT_ID
+//             process.env.CLIENT_ID
 
-            }&client_secret=${process.env.CLIENT_SECRET}`
+//             }&client_secret=${process.env.CLIENT_SECRET}`
 
-        ).catch(err => {
+//         ).catch(err => {
 
-            console.log("User Not Found")
-            process.exit(1)
-        });
-    }
-};
+//             console.log("User Not Found")
+//             process.exit(1)
+//         });
+//     }
+// };

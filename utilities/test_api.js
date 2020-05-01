@@ -1,24 +1,24 @@
-const inquirer = require("inquirer");
+// const inquirer = require("inquirer");
 
-const axios = require("axios");
+// const axios = require("axios");
 
-inquirer.prompt({
+// inquirer.prompt({
 
-    message: "What is your Github username?",
-    name: "username",
-})
+//     message: "What is your Github username?",
+//     name: "username",
+// })
 
-.then(function({ username}) {
+// .then(function({ username}) {
 
-    const queryUrl= `https://api.github.com/users/${username}?client_id=${
+//     const queryUrl= `https://api.github.com/users/${username}?client_id=${
 
-    process.env.CLIENT_ID
+//     process.env.CLIENT_ID
 
-   }&client_secret=${process.env.CLIENT_SECRET}`;
+//    }&client_secret=${process.env.CLIENT_SECRET}`;
 
-   axios.get(queryUrl)
-   .then(function(res) {
+//    axios.get(queryUrl)
+//    .then(function(res) {
 
-    console.log(res.data)
-   })
-})
+//     console.log(res.data)
+//    })
+// });
