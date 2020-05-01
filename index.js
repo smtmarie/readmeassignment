@@ -4,7 +4,7 @@ const util = require("util");
 
 const createReadAsync = util.promisify(fs.writeFile)
 
-function questions() = {
+function questions() {
 
     return inquirer.prompt([
 
@@ -48,18 +48,11 @@ function questions() = {
     
         },
     
-
-
-
-
-
     ])
 
-
-
-    
+   
 }
-]
+
 
 function writeToFile(fileName, data) {
 
