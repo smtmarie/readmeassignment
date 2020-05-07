@@ -1,12 +1,12 @@
 var inquirer = require("inquirer");
 var fs = require("fs");
 var util = require("util");
-var axios = require(axios);
+var path = require("path");
+var generateMarkdown = require("./generateMarkdown");
 
-const createReadAsync = util.promisify(fs.writeFile)
+// const createReadAsync = util.promisify(fs.writeFile)
 
-function questions() {
-    return inquirer.prompt([
+const questions = [
         {
             type: "input",
             message: "What is your github username?",
@@ -54,85 +54,17 @@ function questions() {
             name: "license",
             choices: ["MIT", "GNU", "BSD", "Apache"]
 
-        },
-    ])
+        }
+    ]
+
+function writeToFile(fileName, data) {
+    return fs.writerFileSync(path.join(process.cwd(), fileName), data);
 }
 
-
-function writeToFile(input) {
-
-    return `
-    # ${input.projectName}
-    
-![npm](https://img.shields.io/static/v1?label=npm&message=${input.license}&color=orange)
-
-## Table of Contents:
-
-* [Description](###-*Description:*)
-
-* [Getting Started](###-**Getting-Started**)
-
-* [Installing](###-*Installing:*)
-
-* [Running Tests](###-*Running-Tests:*)
-
-* [Contributing](##-**Contributing**)
-
-* [License](##-**License**)
-
-* [Questions](##-**Questions**)
-
-### *Description:*
-
-${input.description}
-
-## **Getting Started**
-
-This is what you'll need to get started. 
-
-### *Installing:*
-
-To clone this project you will need: 
-
-${input.install}
-
-### *Running Tests:*
-
-You will need to ${input.testing}
-
-## **Contributing**
-
-The contributing parties are ${input.contribute}
-
-## **License**
-
-This project is licensed under ${input.license}
-
-## **Questions**
-
-If you have any questions please feel free to reach out:
-
-GitHub: https://github.com/${input.username}
-
-Email: ${input.email}
-`
-}
-
-
-
-async function init() {
-    try {
-        const answers = await questions();
-
-        const read = writeToFile(answers);
-
-        await createReadAsync("README.md", read);
-
-        console.log("Successfully wrote README.md")
-
-    } catch (err) {
-        console.log(err);
-    }
+function init() {
+    inquirer.prompt(questions).then((inquirerResponses) => {
+        writeToFile("README.md", generateMarkdown({ ...inquirerResponses}));
+    })
 }
 
 init();
